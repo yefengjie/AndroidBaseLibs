@@ -1,10 +1,16 @@
+plugins {
+    id "com.github.dcendents.android-maven" version "1.5"
+}
 apply plugin: 'com.android.library'
+apply plugin: 'com.jfrog.bintray'
+version = "0.0.1"
 
 android {
     def globalConfiguration = rootProject.extensions.getByName("ext")
 
     compileSdkVersion globalConfiguration["androidCompileSdkVersion"]
     buildToolsVersion globalConfiguration["androidBuildToolsVersion"]
+    resourcePrefix "clib_"
 
     defaultConfig {
         minSdkVersion globalConfiguration["androidMinSdkVersion"]
@@ -16,10 +22,13 @@ android {
 
     packagingOptions {
         exclude 'LICENSE.txt'
-        exclude 'META-INF/DEPENDENCIES'
         exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/DEPENDENCIES.txt'
         exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
         exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
     }
 
     lintOptions {
@@ -67,3 +76,80 @@ dependencies {
     compile dependencies.converter_gson
     compile dependencies.http_log
 }
+
+// publish
+// 根节点添加
+def siteUrl = 'https://github.com/yefengfreedom/AndroidBaseLibs'    // project homepage
+def gitUrl = 'https://github.com/yefengfreedom/AndroidBaseLibs.git' // project git
+
+group = "com.yefeng"
+
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+                name 'Android Common Libs'
+                url siteUrl
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'yefeng'
+                        name 'ye.feng'
+                        email 'yefeng.freedom@gmail.com'
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    from javadoc.destinationDir
+    classifier = 'javadoc'
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+    configurations = ['archives']
+    pkg {
+        repo = "maven"
+        name = "clib"                // project name in jcenter
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = ["Apache-2.0"]
+        publish = true
+    }
+}
+
