@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AndroidArchitectureDemo.iml" filepath="$PROJECT_DIR$/AndroidArchitectureDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AndroidCommonLibs.iml" filepath="$PROJECT_DIR$/AndroidCommonLibs.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/support/support.iml" filepath="$PROJECT_DIR$/support/support.iml" />
+      <module fileurl="file://$PROJECT_DIR$/c_libs/c_libs.iml" filepath="$PROJECT_DIR$/c_libs/c_libs.iml" />
     </modules>
   </component>
 </project>
