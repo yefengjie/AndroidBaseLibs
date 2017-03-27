@@ -165,6 +165,17 @@
     
         <dimen name="text_size_input">16sp</dimen>
     </resources>
+    
+    <resources>
+        <dimen name="line_height_body">20sp</dimen>
+        <dimen name="line_height_body_bold">24sp</dimen>
+        <dimen name="line_height_subhead">24sp</dimen>
+        <dimen name="line_height_subhead_bold">28sp</dimen>
+        <dimen name="line_height_headline">32sp</dimen>
+        <dimen name="line_height_display34">40sp</dimen>
+        <dimen name="line_height_display45">48sp</dimen>
+    </resources>
+
 
     <?xml version="1.0" encoding="utf-8"?>
     <resources>
