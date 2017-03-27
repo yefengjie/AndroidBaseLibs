@@ -94,9 +94,9 @@ android {
 dependencies {
     def testDependencies = rootProject.ext.testDependencies
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':c_libs')
     androidTestCompile(testDependencies.espresso, {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testCompile testDependencies.junit
+    compile 'com.yefeng:c_libs:0.0.1'
 }
