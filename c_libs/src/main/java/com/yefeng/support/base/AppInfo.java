@@ -11,25 +11,29 @@ import com.yefeng.support.R;
 /**
  * Created by yee on 11/18/13.
  * app basic information
+ *
  * @author yefeng
  */
 public class AppInfo {
 
-    public static String dType;
-    public static String dVersion;
+    public static String sBuildModel;
+    public static int sBuildSdkInt;
+    public static String sBuildRelease;
 
-    public static int appCode;
-    public static String appVersion;
-    public static String appName;
 
-    public static int width;
-    public static int height;
-    public static float density;
-    public static int densityDpi;
+    public static int sAppCode;
+    public static String sAppVersion;
+    public static String sAppName;
+
+    public static int sWidth;
+    public static int sHeight;
+    public static float sDensity;
+    public static int sDensityDpi;
 
     public static void init(Context mContext) {
-        dType = Build.MODEL;
-        dVersion = Build.VERSION.SDK_INT + "_" + Build.VERSION.RELEASE;
+        sBuildModel = Build.MODEL;
+        sBuildSdkInt = Build.VERSION.SDK_INT;
+        sBuildRelease = Build.VERSION.RELEASE;
 
         PackageInfo pi = null;
         try {
@@ -38,22 +42,22 @@ public class AppInfo {
             e.printStackTrace();
         }
         if (null != pi) {
-            appVersion = pi.versionName;
-            appCode = pi.versionCode;
+            sAppVersion = pi.versionName;
+            sAppCode = pi.versionCode;
         } else {
-            appVersion = "";
-            appCode = 0;
+            sAppVersion = "";
+            sAppCode = 0;
         }
-        appName = mContext.getString(R.string.app_name);
+        sAppName = mContext.getString(R.string.app_name);
 
         initDisplay(mContext);
     }
 
     public static void initDisplay(Context context) {
         DisplayMetrics metrics = context.getResources().getDisplayMetrics();
-        width = metrics.widthPixels;
-        height = metrics.heightPixels;
-        density = metrics.density;
-        densityDpi = metrics.densityDpi;
+        sWidth = metrics.widthPixels;
+        sHeight = metrics.heightPixels;
+        sDensity = metrics.density;
+        sDensityDpi = metrics.densityDpi;
     }
 }

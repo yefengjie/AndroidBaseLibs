@@ -37,8 +37,8 @@ public class AppInit {
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Accept-Charset", "utf-8")
                 .addHeader("Accept-Encoding", "gzip, deflate")
-                .addParam("appVersion", AppInfo.appVersion)
-                .addParam("appName", AppInfo.appName);
+                .addParam("appVersion", AppInfo.sAppVersion)
+                .addParam("appName", AppInfo.sAppName);
 
         // init green db
         DbGreen.getInstance().init(app);

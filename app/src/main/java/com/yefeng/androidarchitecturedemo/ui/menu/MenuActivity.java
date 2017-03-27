@@ -56,8 +56,8 @@ public class MenuActivity extends AppCompatActivity {
         mTb.setTitleTextColor(getResources().getColor(R.color.white));
         mCtl.setTitle("Android Architecture Demo");
         mCtl.setExpandedTitleColor(getResources().getColor(R.color.colorAccent));
-        int height = AppInfo.width / 4 * 3;
-        CollapsingToolbarLayout.LayoutParams lp = new CollapsingToolbarLayout.LayoutParams(AppInfo.width, height);
+        int height = AppInfo.sWidth / 4 * 3;
+        CollapsingToolbarLayout.LayoutParams lp = new CollapsingToolbarLayout.LayoutParams(AppInfo.sWidth, height);
         mIvShow.setLayoutParams(lp);
     }
 
