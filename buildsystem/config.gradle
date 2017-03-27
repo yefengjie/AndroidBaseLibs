@@ -83,7 +83,7 @@ ext {
             // master
             glide                    : "com.github.bumptech.glide:glide:$glideVersion",
             timber                   : "com.jakewharton.timber:timber:$timberVersion",
-            hi_recycler_view    : "com.yefeng:HiRecyclerView:$hiRecyclerViewVersion",
+            hi_recycler_view         : "com.yefeng:HiRecyclerView:$hiRecyclerViewVersion",
 
     ]
 
