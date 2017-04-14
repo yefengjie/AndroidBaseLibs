@@ -3,7 +3,7 @@ plugins {
 }
 apply plugin: 'com.android.library'
 apply plugin: 'com.jfrog.bintray'
-version = "0.0.1"
+version = "0.0.2"
 
 android {
     def globalConfiguration = rootProject.extensions.getByName("ext")
@@ -45,36 +45,82 @@ dependencies {
     def testDependencies = rootProject.ext.testDependencies
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile(testDependencies.espresso, {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    testCompile testDependencies.junit
+    if (testDependencies.espresso) {
+        androidTestCompile(testDependencies.espresso, {
+            exclude group: 'com.android.support', module: 'support-annotations'
+        })
+    }
+    if (testDependencies.junit) {
+        testCompile testDependencies.junit
+    }
     // timber log
-    compile dependencies.timber
+    if (dependencies.timber) {
+        compile dependencies.timber
+    }
     // android
-    compile dependencies.appcompat_v7
-    compile dependencies.design
-    compile dependencies.card_view
+    if (dependencies.appcompat_v7) {
+        compile dependencies.appcompat_v7
+    }
+    if (dependencies.design) {
+        compile dependencies.design
+    }
+    if (dependencies.card_view) {
+        compile dependencies.card_view
+    }
     // glide
-    compile dependencies.glide
+    if (dependencies.glide) {
+        compile dependencies.glide
+    }
     // google
-    compile dependencies.gson
-    compile dependencies.dagger
-    annotationProcessor dependencies.dagger_compiler
+    if (dependencies.gson) {
+        compile dependencies.gson
+    }
+    if (dependencies.dagger) {
+        compile dependencies.dagger
+    }
+    if (dependencies.dagger_compiler) {
+        annotationProcessor dependencies.dagger_compiler
+    }
     // rx java
-    compile dependencies.rxjava
-    compile dependencies.rxandroid
+    if (dependencies.rxjava) {
+        compile dependencies.rxjava
+    }
+    if (dependencies.rxandroid) {
+        compile dependencies.rxandroid
+    }
     // green robot
-    compile dependencies.greendao
+    if (dependencies.greendao) {
+        compile dependencies.greendao
+    }
     //yf recycler view
-    compile dependencies.hi_recycler_view
+    if (dependencies.hi_recycler_view) {
+        compile dependencies.hi_recycler_view
+    }
     // square
-    compile dependencies.okhttp
-    compile dependencies.okio
-    compile dependencies.retrofit
-    compile dependencies.retrofit2_rxjava2_adapter
-    compile dependencies.converter_gson
-    compile dependencies.http_log
+    if (dependencies.okhttp) {
+        compile dependencies.okhttp
+    }
+    if (dependencies.okio) {
+        compile dependencies.okio
+    }
+    if (dependencies.retrofit) {
+        compile dependencies.retrofit
+    }
+    if (dependencies.retrofit2_rxjava2_adapter) {
+        compile dependencies.retrofit2_rxjava2_adapter
+    }
+    if (dependencies.converter_gson) {
+        compile dependencies.converter_gson
+    }
+    if (dependencies.http_log) {
+        compile dependencies.http_log
+    }
+    if (dependencies.butter_knife) {
+        compile dependencies.butter_knife
+    }
+    if (dependencies.butter_knife_compiler) {
+        compile dependencies.butter_knife_compiler
+    }
 }
 
 // publish
